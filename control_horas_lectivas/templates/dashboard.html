@@ -1,0 +1,65 @@
+{% extends 'layout.html'%} 
+{% block title %} Administración {% endblock %} 
+{% block contenido %}
+
+<div class="row">
+    <div class="col-xs-24 col-sm-24 col-md-24 col-lg-24">
+        <div class="jumbotron app-dashboard-title">
+            <div class="container">
+                <h1>Sistema de administración educativa</h1>
+                <p>Universidad Nacional San Agustín</p>
+                <p>
+                    <a class="btn btn-primary btn-sm">Información</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-24 col-sm-8 col-md-8 col-lg-8">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <span class="panel-title">Control de horas activas y no activas
+                        <span class="badge">1</span>
+                    </span>
+                </div>
+                <div class="list-group">
+                    <a href="{% url 'carga_efectiva' %}" class="list-group-item">Registro semestral de carga efectiva</a>
+                </div>
+            </div>
+    </div>
+
+    <div class="col-xs-24 col-sm-8 col-md-8 col-lg-8">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <span class="panel-title">Gestión
+                    <span class="badge">5</span>
+                </span>
+            </div>
+            <div class="list-group">
+                <a href="{% url 'category' %}" class="list-group-item">Gestión de categorías</a>
+                <a href="{% url 'regime' %}" class="list-group-item">Gestión de regímenes</a>
+                <a href="{% url 'departament' %}" class="list-group-item">Gestión de departamentos</a>
+                <a href="{% url 'teacher' %}" class="list-group-item">Gestión de docentes</a>
+                <a href="{% url 'semester' %}" class="list-group-item">Gestión de semestres</a>
+                <a href="{% url 'school' %}" class="list-group-item">Gestión de escuelas</a>
+                <a href="{% url 'study_plan' %}" class="list-group-item">Gestión de plan de estudios</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-24 col-sm-8 col-md-8 col-lg-8">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <span class="panel-title">Configuración
+                        <span class="badge">1</span>
+                    </span>
+                </div>
+                <div class="list-group">
+                    <a href="{% url 'day' %}" class="list-group-item">Configuración de días</a>
+                </div>
+            </div>
+        </div>
+</div>
+
+{% endblock %}

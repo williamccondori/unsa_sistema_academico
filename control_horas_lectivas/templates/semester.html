@@ -1,0 +1,152 @@
+{% extends 'layout.html'%} {% load static %} {% block title %} Gestión de semestres {% endblock %} {% block contenido %}
+<section ng-controller="SemesterController" ng-init="Iniciar()">
+    <div class="row">
+        <div class="col-xs-24 col-sm-24 col-md-12 col-lg-12">
+            <h5>Tipos de semestre</h5>
+            <hr>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <span class="panel-title">Todos los registros
+                        <span class="badge" ng-bind="ListaSemesterType.length"></span>
+                    </span>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-condensed table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th class="text-center col-xs-3">
+                                    <button class="btn btn-xs btn-success" ng-click="CrearSemesterType()">
+                                        <span class="glyphicon glyphicon-plus-sign"></span>
+                                    </button>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody ng-repeat="SemesterType in ListaSemesterType">
+                            <tr>
+                                <td>
+                                    <span ng-bind="SemesterType.Name"></span>
+                                </td>
+                                <td class="text-center col-xs-6">
+                                    <button class="btn btn-xs btn-warning" ng-click="ModificarSemesterType(SemesterType)">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </button>
+                                    <button class="btn btn-xs btn-danger" ng-click="EliminarSemesterType(SemesterType)">
+                                        <span class="glyphicon glyphicon-remove-sign"></span>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-24 col-sm-24 col-md-12 col-lg-12">
+            <h5>Números de semestre</h5>
+            <hr>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <span class="panel-title">Todos los registros
+                        <span class="badge" ng-bind="ListaSemesterNumber.length"></span>
+                    </span>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-condensed table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th class="text-center col-xs-6">
+                                    <button class="btn btn-xs btn-success" ng-click="CrearSemesterNumber()">
+                                        <span class="glyphicon glyphicon-plus-sign"></span>
+                                    </button>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody ng-repeat="SemesterNumber in ListaSemesterNumber">
+                            <tr>
+                                <td>
+                                    <span ng-bind="SemesterNumber.Name"></span>
+                                </td>
+                                <td class="text-center col-xs-3">
+                                    <button class="btn btn-xs btn-warning" ng-click="ModificarSemesterNumber(SemesterNumber)">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </button>
+                                    <button class="btn btn-xs btn-danger" ng-click="EliminarSemesterNumber(SemesterNumber)">
+                                        <span class="glyphicon glyphicon-remove-sign"></span>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="app-modal-semester-type">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <span class="panel-title">Ingrese la información requerida</span>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-xs-24 col-sm-24 col-md-24 col-lg-24">
+                                    <div class="form-group">
+                                        <label>Nombre:</label>
+                                        <input type="text" class="form-control" ng-model="SemesterType.Name">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                            <div class="text-right">
+                                <button type="button" class="btn btn-default" ng-click="CancelarSemesterType()">Cancelar</button>
+                                <button type="button" class="btn btn-success" ng-click="GuardarSemesterType()">Guardar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="app-modal-semester-number">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <span class="panel-title">Ingrese la información requerida</span>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-xs-24 col-sm-24 col-md-24 col-lg-24">
+                                    <div class="form-group">
+                                        <label>Nombre:</label>
+                                        <input type="text" class="form-control" ng-model="SemesterNumber.Name">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                            <div class="text-right">
+                                <button type="button" class="btn btn-default" ng-click="CancelarSemesterNumber()">Cancelar</button>
+                                <button type="button" class="btn btn-success" ng-click="GuardarSemesterNumber()">Guardar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %} {% block scripts %}
+<script src="{% static 'js/app/factories/semester-number-factory.js' %}"></script>
+<script src="{% static 'js/app/factories/semester-type-factory.js' %}"></script>
+<script src="{% static 'js/app/controllers/semester-controller.js' %}"></script>
+{% endblock %}

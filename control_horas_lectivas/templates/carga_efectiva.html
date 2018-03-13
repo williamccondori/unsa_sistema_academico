@@ -1,0 +1,170 @@
+{% extends 'layout.html'%} 
+{% load static %} 
+{% block title %} Registro semestral de carga efectiva 
+{% endblock %} 
+{% block contenido %}
+<section ng-controller="CargaEfectivaController" ng-init="Iniciar()">
+    Registro semestral de carga efectiva
+    <hr>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <span class="panel-title">Datos del docente</span>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-condensed table-bordered">
+                <tbody>
+                    <tr>
+                        <td colspan="4"><b>Apellidos y nombres</b></td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">
+                            <span ng-bind="Teacher.AddressName + ' ' + Teacher.Name"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><b>Facultad</b></td>
+                        <td><b>Departamento académico</b></td>
+                        <td><b>Categoría</b></td>
+                        <td><b>Régimen</b></td>
+                    </tr>
+                    <tr>
+                        <td>Datos</td>
+                        <td>
+                            <span ng-bind="Teacher.DepartamentDto.Name"></span>
+                        </td>
+                        <td>
+                            <span ng-bind="Teacher.CategoryDto.Name"></span>
+                        </td>
+                        <td>
+                            <span ng-bind="Teacher.Regime.Name"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4"><b>Condición</b></td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">
+                            Activo
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="panel-heading">
+            <span class="panel-title">Información académica</span>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-condensed table-bordered">
+                <tbody>
+                    <tr>
+                        <td>Título o grado</td>
+                        <td>
+                            <span ng-bind="Teacher.Degree"></span>
+                        </td>
+                        <td>Especialidad</td>
+                        <td>
+                            <span ng-bind="Teacher.Speciality"></span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="panel-heading">
+            <span class="panel-title">Asignaturas</span>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-condensed table-bordered">
+                <tbody>
+                    <tr>
+                        <td>Asignatura</td>
+                        <td>Tipo</td>
+                        <td>Escuela profesional</td>
+                        <th class="text-center col-xs-3">
+                            <button class="btn btn-xs btn-success" ng-click="CrearCategory()" data-toggle="modal" href='#app-modal-carga-efectiva'>
+                                <span class="glyphicon glyphicon-plus-sign"></span>
+                            </button>
+                        </th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <div class="modal fade" id="app-modal-carga-efectiva">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <span class="panel-title">Ingrese la información requerida</span>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-xs-24 col-sm-24 col-md-24 col-lg-24">
+                                    <div class="form-group">
+                                        <label>Nombre:</label>
+                                        <input type="text" class="form-control" ng-model="SemesterType.Name">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-heading">
+                            <span class="panel-title">Días</span>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-condensed table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Horas</th>
+                                        <th>Lunes</th>
+                                        <th>Martes</th>
+                                        <th>Miércoles</th>
+                                        <th>Jueves</th>
+                                        <th>Viernes</th>
+                                        <th>Sábado</th>
+                                        <th>Domingo</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>De:</td>
+                                        <th><input type="text" class="form-control"></th>
+                                        <th><input type="text" class="form-control"></th>
+                                        <th><input type="text" class="form-control"></th>
+                                        <th><input type="text" class="form-control"></th>
+                                        <th><input type="text" class="form-control"></th>
+                                        <th><input type="text" class="form-control"></th>
+                                        <th><input type="text" class="form-control"></th>
+                                    </tr>
+                                    <tr>
+                                        <td>Hasta:</td>
+                                        <th><input type="text" class="form-control"></th>
+                                        <th><input type="text" class="form-control"></th>
+                                        <th><input type="text" class="form-control"></th>
+                                        <th><input type="text" class="form-control"></th>
+                                        <th><input type="text" class="form-control"></th>
+                                        <th><input type="text" class="form-control"></th>
+                                        <th><input type="text" class="form-control"></th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="panel-footer">
+                            <div class="text-right">
+                                <button type="button" class="btn btn-default" ng-click="CancelarSemesterType()">Cancelar</button>
+                                <button type="button" class="btn btn-success" ng-click="GuardarSemesterType()">Guardar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</section>
+
+{% endblock %} 
+{% block scripts %}
+<script src="{% static 'js/app/factories/carga-efectiva-factory.js' %}"></script>
+<script src="{% static 'js/app/controllers/carga-efectiva-controller.js' %}"></script>
+{% endblock %}

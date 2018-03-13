@@ -6,13 +6,13 @@
     function DayFactory(BaseFactory) {
         var day = [];
         day.ObtenerDay = function () {
-            return BaseFactory.Obtener('/control_horas_lectivas/api/day');
+            return BaseFactory.Obtener('/administracion/control_horas_lectivas/api/day');
         };
         day.GuardarDay = function (modelo) {
-            return BaseFactory.Guardar('/control_horas_lectivas/api/day', modelo);
+            return BaseFactory.Guardar('/administracion/control_horas_lectivas/api/day', modelo);
         };
         day.EliminarDay = function (modelo) {
-            return BaseFactory.Eliminar('/control_horas_lectivas/api/day', modelo);
+            return BaseFactory.Eliminar('/administracion/control_horas_lectivas/api/day', modelo);
         };
         return day;
     }

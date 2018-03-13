@@ -1,13 +1,13 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from control_horas_lectivas.middlewares.autenticacion_middleware import AutenticacionMiddleware
+from django.utils.decorators import decorator_from_middleware
 
-
+@decorator_from_middleware(AutenticacionMiddleware)
 def dashboard(request):
     return render(request, 'dashboard.html')
 
-def login(request):
-    return render(request, 'login.html')
-
+@decorator_from_middleware(AutenticacionMiddleware)  
 def teacher(request):
     return render(request, 'teacher.html')
 

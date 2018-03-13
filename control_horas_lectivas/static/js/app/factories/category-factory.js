@@ -6,13 +6,13 @@
     function CategoryFactory(BaseFactory) {
         var category = [];
         category.ObtenerCategory = function () {
-            return BaseFactory.Obtener('/control_horas_lectivas/api/category');
+            return BaseFactory.Obtener('/administracion/control_horas_lectivas/api/category');
         };
         category.GuardarCategory = function (modelo) {
-            return BaseFactory.Guardar('/control_horas_lectivas/api/category', modelo);
+            return BaseFactory.Guardar('/administracion/control_horas_lectivas/api/category', modelo);
         };
         category.EliminarCategory = function (modelo) {
-            return BaseFactory.Eliminar('/control_horas_lectivas/api/category', modelo);
+            return BaseFactory.Eliminar('/administracion/control_horas_lectivas/api/category', modelo);
         };
         return category;
     }

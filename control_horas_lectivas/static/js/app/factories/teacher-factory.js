@@ -5,13 +5,13 @@
     function TeacherFactory(BaseFactory) {
         var teacher = [];
         teacher.ObtenerTeacher = function () {
-            return BaseFactory.Obtener('/control_horas_lectivas/api/teacher');
+            return BaseFactory.Obtener('/administracion/control_horas_lectivas/api/teacher');
         };
         teacher.GuardarTeacher = function (modelo) {
-            return BaseFactory.Guardar('/control_horas_lectivas/api/teacher', modelo);
+            return BaseFactory.Guardar('/administracion/control_horas_lectivas/api/teacher', modelo);
         };
         teacher.EliminarTeacher = function (modelo) {
-            return BaseFactory.Eliminar('/control_horas_lectivas/api/teacher', modelo);
+            return BaseFactory.Eliminar('/administracion/control_horas_lectivas/api/teacher', modelo);
         };
         return teacher;
     }

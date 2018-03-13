@@ -5,7 +5,6 @@ from . import views
 urlpatterns = [
     path('api/', include('control_horas_lectivas.urls_api')),
     path('', views.dashboard, name='dashboard'),
-    path('login', views.login, name='login'),
     path('teacher', views.teacher, name='teacher'),
     path('departament', views.departament, name='departament'),
     path('category', views.category, name='category'),

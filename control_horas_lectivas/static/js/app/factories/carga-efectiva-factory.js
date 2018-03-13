@@ -5,7 +5,7 @@
     function CargaEfectivaFactory(BaseFactory) {
         var cargaEfectiva = [];
         cargaEfectiva.ObtenerCargaEfectiva = function () {
-            return BaseFactory.Obtener('/control_horas_lectivas/api/carga_efectiva');
+            return BaseFactory.Obtener('/administracion/control_horas_lectivas/api/carga_efectiva');
         };
         return cargaEfectiva;
     }

@@ -5,7 +5,6 @@
     function CourseFactory(BaseFactory) {
         var Course = [];
         Course.ObtenerCourse = function (modelo) {
-            debugger;
             return BaseFactory.Obtener('/administracion/control_horas_lectivas/api/course', modelo);
         };
         Course.GuardarCourse = function (modelo) {

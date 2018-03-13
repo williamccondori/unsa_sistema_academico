@@ -33,6 +33,7 @@
             $scope.Course = {
                 Id: 0,
                 Name: '',
+                Credit: 0,
                 HoursDto: [],
                 IndicadorHabilitado: 'S',
                 Estado: EstadoObjeto.SinCambios
@@ -179,8 +180,15 @@
             Bootstrap.CerrarModal('#app-modal-course');
         };
 
-        $scope.EliminarCourse = function () {
-
+        $scope.EliminarCourse = function (modelo) {
+            $scope.Course = modelo;
+            CourseFactory.EliminarCourse($scope.Course).then(function (response) {
+                if (response.Estado) {
+                    toastr.success(Mensaje.Correcto.Descripcion, Mensaje.Correcto.Titulo);
+                    $scope.ObtenerCourse($scope.StudyPlan.Id);
+                } else
+                    toastr.error(response.Mensaje, Mensaje.Error.Titulo);
+            });
         }
 
         $scope.CancelarCourse = function () {

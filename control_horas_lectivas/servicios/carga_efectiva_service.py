@@ -4,6 +4,9 @@ from control_horas_lectivas.dtos.teacher_dto import TeacherDto
 from control_horas_lectivas.dtos.departament_dto import DepartamentDto
 from control_horas_lectivas.dtos.category_dto import CategoryDto
 from control_horas_lectivas.dtos.regime_dto import RegimeDto
+from control_horas_lectivas.dtos.course_dto import CourseDto
+from control_horas_lectivas.dtos.study_plan_dto import StudyPlanDto
+from control_horas_lectivas.dtos.school_dto import SchoolDto
 
 class CargaEfectivaService(object):
 
@@ -12,6 +15,25 @@ class CargaEfectivaService(object):
 
         teacher = Teacher.objects.filter(pk=teacher_id)
         teacher = teacher[0]
+
+        courses_dto = []
+
+        for course in teacher.course_set.all():
+            courses_dto.append(CourseDto(
+                id=course.id,
+                name=course.name,
+                id_study_plan=course.study_plan_id,
+                id_teacher=course.teacher_id,
+                study_plan_dto=StudyPlanDto(
+                    id=course.study_plan.id,
+                    year=course.study_plan.year,
+                    school_dto=SchoolDto(
+                        id=course.study_plan.school.id,
+                        name=course.study_plan.school.name
+                    )
+                )
+            ))
+
         carga_efectiva_dto.TeacherDto = TeacherDto(
             teacher.id
             , teacher.name
@@ -32,7 +54,8 @@ class CargaEfectivaService(object):
             , RegimeDto(
                 teacher.regime.id
                 , teacher.regime.name
-            )
+            ),
+            courses_dto
         )
         
         carga_efectiva_dto.DaysDto = []

@@ -7,7 +7,7 @@ class TeacherDto(object):
     def __init__(self, id=0, name='', address_name='', degree=''
         , speciality='', id_departament=0, id_category=0, id_regime=0
         , departament_dto=DepartamentDto(), category_dto=CategoryDto()
-        , regime_dto=RegimeDto(), estado=0):
+        , regime_dto=RegimeDto(), courses_dto=[], estado=0):
         self.Id = id
         self.Name = name
         self.AddressName = address_name
@@ -16,10 +16,10 @@ class TeacherDto(object):
         self.IdDepartament = id_departament
         self.IdCategory = id_category
         self.IdRegime = id_regime
-        
         self.DepartamentDto = departament_dto
         self.CategoryDto = category_dto
         self.Regime = regime_dto
+        self.CoursesDto = courses_dto
 
         self.Estado = estado
 

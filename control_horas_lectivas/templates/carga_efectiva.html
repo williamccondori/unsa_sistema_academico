@@ -74,16 +74,24 @@
         </div>
         <div class="table-responsive">
             <table class="table table-condensed table-bordered">
-                <tbody>
+                <thead>
                     <tr>
-                        <td>Asignatura</td>
-                        <td>Tipo</td>
-                        <td>Escuela profesional</td>
-                        <th class="text-center col-xs-3">
-                            <button class="btn btn-xs btn-success" ng-click="CrearCategory()" data-toggle="modal" href='#app-modal-carga-efectiva'>
-                                <span class="glyphicon glyphicon-plus-sign"></span>
+                        <th>Curso</th>
+                        <th>Escuela profesional</th>
+                        <th>Año</th>
+                        <th>Vizualizar</th>
+                    </tr>
+                </thead>
+                <tbody ng-repeat="Course in Teacher.CoursesDto">
+                    <tr>
+                        <td><span ng-bind="Course.Name"></span></td>
+                        <td><span ng-bind="Course.StudyPlanDto.SchoolDto.Name"></span></td>
+                        <td><span ng-bind="Course.StudyPlanDto.Year"></span></td>
+                        <td class="text-center col-xs-3">
+                            <button class="btn btn-xs btn-primary" ng-click="CrearCategory()" data-toggle="modal" href='#app-modal-carga-efectiva'>
+                                <span class="glyphicon glyphicon-eye-open"></span>
                             </button>
-                        </th>
+                        </td>
                     </tr>
                 </tbody>
             </table>

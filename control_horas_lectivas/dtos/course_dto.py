@@ -35,3 +35,11 @@ class CourseDto(object):
             )
             hours_dto.append(hour_dto)
         self.HoursDto = hours_dto
+
+    def from_json_delete(self, json_data):
+        self.Id = json_data["Id"]
+        self.Name = json_data["Name"]
+        self.Credit = json_data["Credit"]
+        self.IdStudyPlan = json_data["IdStudyPlan"]
+        self.IdTeacher = json_data["IdTeacher"]
+        self.Estado = json_data["Estado"]

@@ -48,10 +48,11 @@ class CourseApiController(View):
 
     def delete(self, request, *args, **kwargs):
         try:
+
             course_service = CourseService()
             course_dto = CourseDto()
 
-            course_dto.from_json(request.GET)
+            course_dto.from_json_delete(request.GET)
             course_service.delete(course_dto)
 
             return JsonResponse(encode.to_json(

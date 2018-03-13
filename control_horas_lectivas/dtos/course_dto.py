@@ -23,3 +23,15 @@ class CourseDto(object):
         self.IdStudyPlan = json_data["IdStudyPlan"]
         self.IdTeacher = json_data["IdTeacher"]
         self.Estado = json_data["Estado"]
+
+        hours_dto = []
+        for hour in json_data["HoursDto"]:
+            hour_dto = HourDto()
+            hour_dto.to_dto(
+                hour["Id"],
+                hour["Quantity"],
+                hour["IdHourType"],
+                hour["Estado"]
+            )
+            hours_dto.append(hour_dto)
+        self.HoursDto = hours_dto

@@ -11,6 +11,13 @@ class HourDto(object):
 
         self.HourTypeDto = hour_type_dto
 
+    def to_dto(self, id=0, quantity=0, id_hour_type=0, estado=0):
+        self.Id = id
+        self.IdCourse = 0
+        self.Quantity = quantity
+        self.IdHourType = id_hour_type
+        self.Estado = estado
+
     def from_json(self, json_data):
         self.Id = json_data["Id"]
         self.Quantity = json_data["Quantity"]

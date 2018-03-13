@@ -10,6 +10,7 @@ urlpatterns = [
     path('category', views.category, name='category'),
     path('regime', views.regime, name='regime'),
     path('day', views.day, name='day'),
+    path('hour_type', views.hourtype, name='hour_type'),
     path('semester', views.semester, name='semester'),
     path('carga_efectiva', views.cargaefectiva, name='carga_efectiva'),
     path('study_plan', views.studyplan, name='study_plan'),

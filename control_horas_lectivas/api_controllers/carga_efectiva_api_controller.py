@@ -12,7 +12,7 @@ class CargaEfectivaApiController(View):
         try:
             carga_efectiva_service = CargaEfectivaService()
 
-            result = carga_efectiva_service.get(7)
+            result = carga_efectiva_service.get(1)
             print(result)
             return JsonResponse(encode.to_json(
                 Response(datos=result)), safe=False)

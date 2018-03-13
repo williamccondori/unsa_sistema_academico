@@ -1,4 +1,4 @@
-from control_horas_lectivas.models import Course
+from control_horas_lectivas.models import Course, Hour
 from control_horas_lectivas.dtos.course_dto import CourseDto
 from control_horas_lectivas.dtos.study_plan_dto import StudyPlanDto
 from control_horas_lectivas.dtos.hour_dto import HourDto
@@ -52,6 +52,18 @@ class CourseService(object):
                 , teacher_id=course_dto.IdTeacher
             )
             course.save()
+
+            course_id = Course.objects.latest('id')
+
+            for hour_dto in course_dto.HoursDto:
+                if (hour_dto.Estado == 1):
+                    hour = Hour(
+                        course_id=course_id.id,
+                        hour_type_id=hour_dto.IdHourType, 
+                        quantity=hour_dto.Quantity
+                    )
+                    hour.save()
+
         elif (course_dto.Estado == 2):
             course = Course.objects.filter(pk=course_dto.Id)
             course.update(

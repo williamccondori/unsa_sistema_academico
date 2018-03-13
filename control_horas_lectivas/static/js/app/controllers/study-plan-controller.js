@@ -6,16 +6,18 @@
         "StudyPlanFactory",
         "SchoolFactory",
         "TeacherFactory",
-        "CourseFactory"
+        "CourseFactory",
+        "HourTypeFactory"
     ];
 
     function StudyPlanController($scope, toastr, StudyPlanFactory, SchoolFactory
-        , TeacherFactory, CourseFactory) {
+        , TeacherFactory, CourseFactory, HourTypeFactory) {
 
         $scope.ListaStudyPlan = [];
         $scope.ListaSchool = [];
         $scope.ListaTeacher = [];
         $scope.ListaCourse = [];
+        $scope.ListaHourType = [];
 
         $scope.ResetStudyPlan = function () {
             $scope.StudyPlan = {
@@ -31,6 +33,18 @@
             $scope.Course = {
                 Id: 0,
                 Name: '',
+                HoursDto: [],
+                IndicadorHabilitado: 'S',
+                Estado: EstadoObjeto.SinCambios
+            }
+        }
+
+        $scope.ResetHour = function() {
+            $scope.Hour = {
+                Id: 0,
+                HourTypeDto: {},
+                Quantity: 0,
+                IdHourType: 0,
                 IndicadorHabilitado: 'S',
                 Estado: EstadoObjeto.SinCambios
             }
@@ -41,6 +55,7 @@
             $scope.ObtenerStudyPlan();
             $scope.ObtenerSchool();
             $scope.ObtenerTeacher();
+            $scope.ObtenerHourType();
         };
 
         $scope.CrearStudyPlan = function () {
@@ -170,6 +185,33 @@
 
         $scope.CancelarCourse = function () {
             Bootstrap.CerrarModal('#app-modal-course');
+        };
+
+        $scope.CrearHour = function() {
+            $scope.ResetHour();
+            $scope.Hour.Estado = EstadoObjeto.Nuevo;
+            Bootstrap.AbrirModal('#app-modal-hour');
+        };
+
+        $scope.CancelarHour = function(){
+            Bootstrap.CerrarModal('#app-modal-hour');
+        };
+
+        $scope.GuardarHour = function(){
+            $scope.Hour.IdHourType = $scope.Hour.HourTypeDto.Id
+            $scope.Course.HoursDto.push($scope.Hour);
+            Bootstrap.CerrarModal('#app-modal-hour');
+        };
+
+        $scope.ObtenerHourType = function () {
+            HourTypeFactory.ObtenerHourType().then(function (response) {
+                if (response.Estado)
+                    $scope.ListaHourType = response.Datos;
+                else
+                    toastr.error(response.Mensaje, Mensaje.Error.Titulo);
+            }).catch(function (error) {
+                toastr.error(MensajeRespuesta.Error, Mensaje.Error.Titulo);
+            });
         };
     }
 

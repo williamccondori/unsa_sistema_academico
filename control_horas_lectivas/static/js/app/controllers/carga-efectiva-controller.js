@@ -24,6 +24,13 @@
             });
         };
 
+        $scope.MostrarCourseActivity = function(){
+            Bootstrap.AbrirModal('#app-modal-course-activity');
+        };
+
+        $scope.OcultarCourseActivity = function(){
+            Bootstrap.CerrarModal('#app-modal-course-activity');
+        };
     }
 
     module.controller('CargaEfectivaController', CargaEfectivaController);

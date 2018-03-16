@@ -76,7 +76,7 @@ WSGI_APPLICATION = 'unsa_sistema_academico.wsgi.application'
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
+    'test': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'administracion_unsa',
         'USER': 'unsa',
@@ -84,7 +84,7 @@ DATABASES = {
         'HOST': '127.0.0.1',
         'PORT': '5432',
     },
-    'test': {
+    'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }

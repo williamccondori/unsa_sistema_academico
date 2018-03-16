@@ -7,90 +7,189 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>{% block title %}{% endblock %} - Sistema académico</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/angular-toastr.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'control_horas_lectivas/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'control_horas_lectivas/css/angular-toastr.css' %}" />
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'control_horas_lectivas/css/sb-admin.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'control_horas_lectivas/css/style.css' %}">
 </head>
 
-<body>
-    <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
-        <div class="container">
+<body ng-app="app-unsa">
+    <section id="wrapper">
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".app-menu-lateral">
                     <span class="sr-only">Menú</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="{% url 'dashboard' %}">Sistema académico</a>
+                <a class="navbar-brand" href="/">Adminstración</a>
             </div>
-            <div class="collapse navbar-collapse navbar-ex1-collapse">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="{% url 'dashboard' %}">Inicio</a>
-                    </li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <div id="loading"></div>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">WCONDORI
-                            <b class="caret"></b>
-                        </a>
+            <ul class="nav navbar-right top-nav">
+                <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
+                        <ul class="dropdown-menu message-dropdown">
+                            <li class="message-preview">
+                                <a href="#">
+                                    <div class="media">
+                                        <span class="pull-left">
+                                            <img class="media-object" src="http://placehold.it/50x50" alt="">
+                                        </span>
+                                        <div class="media-body">
+                                            <h5 class="media-heading">
+                                                <strong>John Smith</strong>
+                                            </h5>
+                                            <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                            <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="message-preview">
+                                <a href="#">
+                                    <div class="media">
+                                        <span class="pull-left">
+                                            <img class="media-object" src="http://placehold.it/50x50" alt="">
+                                        </span>
+                                        <div class="media-body">
+                                            <h5 class="media-heading">
+                                                <strong>John Smith</strong>
+                                            </h5>
+                                            <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                            <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="message-preview">
+                                <a href="#">
+                                    <div class="media">
+                                        <span class="pull-left">
+                                            <img class="media-object" src="http://placehold.it/50x50" alt="">
+                                        </span>
+                                        <div class="media-body">
+                                            <h5 class="media-heading">
+                                                <strong>John Smith</strong>
+                                            </h5>
+                                            <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                            <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="message-footer">
+                                <a href="#">Read All New Messages</a>
+                            </li>
+                        </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
+                    <ul class="dropdown-menu alert-dropdown">
+                        <li>
+                            <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-primary">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-success">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-info">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-warning">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-danger">Alert Badge</span></a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">View All</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="/">Configuración</a>
+                                <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
                             </li>
                             <li>
-                                <a href="/">Cerrar sesión</a>
+                                <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                            </li>
+                        </ul>
+                </li>
+            </ul>
+            <div class="collapse navbar-collapse app-menu-lateral">
+                <ul class="nav navbar-nav side-nav">
+                    <li>
+                        <section id="app-menu-lateral-tarjeta-usuario">
+                            <img src="{% static 'control_horas_lectivas/images/user.png' %}" alt="imagen" class="img-circle">
+                            <h1>William Condori Quispe</h1>
+                            <h2>Docente</h2>
+                        </section>
+                    </li>
+                    <li>
+                        <a href="{% url 'dashboard' %}"><i class="fa fa-tachometer-alt"></i> Inicio</a>
+                    </li>
+                    <li>
+                        <a href="charts.html"><i class="fa fa-fw fa-bar-chart-o"></i> Charts</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" data-toggle="collapse" data-target="#app-menu-lateral-gestion"><i class="fa fa-graduation-cap"></i> Gestión <i class="fa fa-caret-down"></i></a>
+                        <ul id="app-menu-lateral-gestion" class="collapse">
+                            <li>
+                                <a href="{% url 'teacher' %}">Gestionar docentes</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'study_plan' %}">Gestionar plan de estudios</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'study_plan' %}">Gestionar cursos</a>
                             </li>
                         </ul>
                     </li>
+                    <li>
+                        <a href="blank-page.html"><i class="fa fa-fw fa-file"></i> Blank Page</a>
+                    </li>
+                    <li>
+                        <a href="index-rtl.html"><i class="fa fa-fw fa-dashboard"></i> RTL Dashboard</a>
+                    </li>
                 </ul>
             </div>
-        </div>
-    </nav>
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-24 col-sm-6 col-md-6 col-lg-6">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <span class="panel-title">Información del ususario</span>
-                    </div>
-                    <div class="panel-body">
-                        Usuario
-                    </div>
-                    <div class="panel-footer">
-                        <div class="text-right">
-                            <button type="button" class="btn btn-info">Configuración
-                            </button>
-                            <button type="button" class="btn btn-success">Editar perfil
-                            </button>
-                        </div>
+        </nav>
+        <section id="page-wrapper">
+            <div class="contaner-fluid">
+                <div class="row">
+                    <div class="col-xs-24">
+                        {% block contenido %}{% endblock %}
                     </div>
                 </div>
             </div>
-            <div class="col-xs-24 col-sm-18 col-md-18 col-lg-18">
-                <div ng-app="app-unsa">
-                    {% block contenido %}{% endblock %}
-                </div>
-            </div>
-        </div>
-    </div>
-    <script src="{% static 'js/jquery-1.10.2.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+        </section>
+    </section>
 
+    <script src="{% static 'control_horas_lectivas/js/jquery-1.10.2.min.js' %}"></script>
+    <script src="{% static 'control_horas_lectivas/js/bootstrap.min.js' %}"></script>
 
-    <script src="{% static 'js/app/helpers/bootstrap-helper.js' %}"></script>
-    <script src="{% static 'js/app/helpers/definicion-helper.js' %}"></script>
+    <script src="{% static 'control_horas_lectivas/js/app/helpers/bootstrap-helper.js' %}"></script>
+    <script src="{% static 'control_horas_lectivas/js/app/helpers/definicion-helper.js' %}"></script>
 
     <!-- Angular -->
-    <script src="{% static 'js/angular.min.js' %}"></script>
-    <script src="{% static 'js/angular-resource.min.js' %}"></script>
-    <script src="{% static 'js/angular-toastr.js' %}"></script>
-    <script src="{% static 'js/app/app.js' %}"></script>
-    <script src="{% static 'js/app/factories/base-factory.js' %}"></script>
+    <script src="{% static 'control_horas_lectivas/js/angular.min.js' %}"></script>
+    <script src="{% static 'control_horas_lectivas/js/angular-resource.min.js' %}"></script>
+    <script src="{% static 'control_horas_lectivas/js/angular-toastr.js' %}"></script>
+    <script src="{% static 'control_horas_lectivas/js/app/app.js' %}"></script>
+    <script src="{% static 'control_horas_lectivas/js/app/factories/base-factory.js' %}"></script>
     {% block scripts %}{% endblock %}
 </body>
 

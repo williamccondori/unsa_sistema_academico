@@ -40,8 +40,12 @@ class HourType(models.Model):
 class Course(models.Model):
     name = models.CharField(max_length=100)
     credit = models.IntegerField()
-    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
     study_plan = models.ForeignKey(StudyPlan, on_delete=models.CASCADE)
+
+
+class TeacherXCourse(models.Model):
+    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
 
 
 class Hour(models.Model):

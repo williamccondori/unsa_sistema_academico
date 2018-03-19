@@ -35,5 +35,8 @@ def studyplan(request):
 def school(request):
     return render(request, 'school.html')
 
+def course(request):
+    return render(request, 'course.html')
+
 def hourtype(request):
     return render(request, 'hour_type.html')

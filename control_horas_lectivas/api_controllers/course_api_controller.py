@@ -10,26 +10,17 @@ class CourseApiController(View):
 
     def get(self, request, *args, **kwargs):
         try:
-            if 'IdStudyPlan' in request.GET:
-                id_study_plan = int(request.GET['IdStudyPlan'])
-                result = self.get_course_by_study_plan(id_study_plan)
+            course_service = CourseService()
+            if 'id_plan_estudio' in request.GET:
+                id_plan_estudio = int(request.GET['id_plan_estudio'])
+                result = course_service.obtener_x_plan_estudio(id_plan_estudio)
             else:
-                result = self.get_course()
-
+                result = []
             return JsonResponse(encode.to_json(
                 Response(datos=result)), safe=False)
         except Exception as e:
             return JsonResponse(encode.to_json(
                 Response(estado=False, mensaje=str(e))), safe=False)
-
-    def get_course(self):
-        # course_service = CourseService()
-        # return course_service.get() 
-        pass
-
-    def get_course_by_study_plan(self, id_study_plan):
-        course_service = CourseService()
-        return course_service.get_by_study_plan(id_study_plan) 
 
     def post(self, request, *args, **kwargs):
         try:

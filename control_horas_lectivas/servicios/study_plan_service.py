@@ -1,8 +1,19 @@
-from control_horas_lectivas.models import StudyPlan
+from control_horas_lectivas.models import StudyPlan, Departament, School
 from control_horas_lectivas.dtos.study_plan_dto import StudyPlanDto
 from control_horas_lectivas.dtos.school_dto import SchoolDto
 
 class StudyPlanService(object):
+
+    def obtener_x_departamento(self, id_departamento):
+        plan_estudios_dto = []
+        # plan_estudios = StudyPlan.objects.filter(school.departament.id=id_departamento)
+        plan_estudios = []
+        for plan_estudio in plan_estudios:
+            plan_estudios_dto.append(StudyPlanDto(
+                id=plan_estudio.id,
+                year=plan_estudio.year,
+                name='Plan de estudios [' + str(plan_estudio.year) + ']'
+            ))
 
     def get(self):
         study_plans_dto = []

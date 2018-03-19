@@ -8,40 +8,31 @@ import time
 
 class CourseService(object):
 
+    def obtener_x_plan_estudio(self, id_plan_estudio):
+        cursos_dto = []
+        cursos = Course.objects.filter(study_plan_id=id_plan_estudio)
+        for curso in cursos:
+            docentes_dto = []
+            docentes_x_curso = curso.teacher_set.all()
+            for docente in docentes_x_curso:
+                docentes_dto.append(TeacherDto(
+                    id=docente.id,
+                    name=docente.name,
+                    address_name=docente.address_name
+                ))
+            cursos_dto.append(CourseDto(
+                id=curso.id,
+                nombre=curso.name,
+                credito=curso.credit,
+                id_plan_estudio=curso.studt_plan_id,
+                plan_estudio_x=StudyPlanDto(),
+                docentes=docentes_dto
+            ))
+        return cursos_dto
+
+
     def get_by_study_plan(self, id_study_plan):
-        
-        courses = Course.objects.filter(study_plan_id=id_study_plan)
-
-        time_s = time.time()
-
-        courses_dto = list(map(lambda p: CourseDto(
-            p.id,
-            p.name,
-            p.credit,
-            p.study_plan_id,
-            p.teacher_id,
-            StudyPlanDto(),
-            TeacherDto(
-                p.teacher.id,
-                p.teacher.name,
-                p.teacher.address_name
-            ),
-            list(map(lambda d: HourDto(
-                d.id,
-                d.quantity,
-                d.hour_type_id,
-                HourTypeDto(
-                    d.hour_type.id,
-                    d.hour_type.name
-                )
-            ), p.hour_set.all()))
-        ), courses))
-
-        time_e = time.time()
-
-        print('Se demoró'+ str(time_e - time_s))
-
-        return courses_dto
+        return []
 
     def save(self, course_dto):
         if (course_dto.Estado == 1):

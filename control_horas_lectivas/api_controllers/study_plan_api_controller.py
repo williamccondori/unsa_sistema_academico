@@ -11,9 +11,11 @@ class StudyPlanApiController(View):
     def get(self, request, *args, **kwargs):
         try:
             study_plan_service = StudyPlanService()
-
-            result = study_plan_service.get()
-
+            if 'id_departamento' in request.GET:
+                id_departamento = int(request.GET['id_departamento'])
+                result = study_plan_service.obtener_x_departamento(id_departamento)
+            else:
+                result = study_plan_service.get()
             return JsonResponse(encode.to_json(
                 Response(datos=result)), safe=False)
         except Exception as e:

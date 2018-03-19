@@ -19,20 +19,7 @@ class CargaEfectivaService(object):
         courses_dto = []
 
         for course in teacher.course_set.all():
-            courses_dto.append(CourseDto(
-                id=course.id,
-                name=course.name,
-                id_study_plan=course.study_plan_id,
-                id_teacher=course.teacher_id,
-                study_plan_dto=StudyPlanDto(
-                    id=course.study_plan.id,
-                    year=course.study_plan.year,
-                    school_dto=SchoolDto(
-                        id=course.study_plan.school.id,
-                        name=course.study_plan.school.name
-                    )
-                )
-            ))
+            courses_dto.append(CourseDto())
 
         carga_efectiva_dto.TeacherDto = TeacherDto(
             teacher.id

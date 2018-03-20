@@ -13,6 +13,7 @@ from control_horas_lectivas.api_controllers.hour_api_controller import HourApiCo
 from control_horas_lectivas.api_controllers.hour_type_api_controller import HourTypeApiController
 from control_horas_lectivas.api_controllers.hour_activity_api_controller import HourActivityApiController
 from control_horas_lectivas.api_controllers.carga_efectiva_api_controller import CargaEfectivaApiController
+from control_horas_lectivas.api_controllers.informacion_api_controller import InformacionApiController
 
 
 API_NAME = 'api_'
@@ -31,5 +32,6 @@ urlpatterns = [
     path('hour', HourApiController.as_view(), name=API_NAME+'hour'),
     path('hour_type', HourTypeApiController.as_view(), name=API_NAME+'hour_type'),
     path('hour_activity', HourActivityApiController.as_view(), name=API_NAME+'hour_activity'),
-    path('carga_efectiva', CargaEfectivaApiController.as_view(), name=API_NAME+'carga_efectiva'), 
+    path('carga_efectiva', CargaEfectivaApiController.as_view(), name=API_NAME+'carga_efectiva'),
+    path('informacion', InformacionApiController.as_view(), name=API_NAME+'informacion'),  
 ]

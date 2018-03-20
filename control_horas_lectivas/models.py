@@ -1,8 +1,21 @@
 from django.db import models
+from django.contrib.auth.models import User
+
+class UserType(models.Model):
+    name = models.CharField(max_length=100)
 
 
 class Departament(models.Model):
     name = models.CharField(max_length=100)
+
+
+class UserSystem(models.Model):
+    username = models.CharField(max_length=100)
+    user_type = models.ForeignKey(UserType, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    description = models.CharField(max_length=500)
+    image = models.CharField(max_length=300)
+    departament = models.ForeignKey(Departament, on_delete=models.CASCADE)
 
 
 class Category(models.Model):

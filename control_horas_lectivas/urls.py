@@ -1,6 +1,6 @@
 from django.urls import path, include
 from . import views
-
+from control_horas_lectivas.controllers.departamento_controller import DepartamentoController
 
 urlpatterns = [
     path('api/', include('control_horas_lectivas.urls_api')),
@@ -15,6 +15,6 @@ urlpatterns = [
     path('carga_efectiva', views.cargaefectiva, name='carga_efectiva'),
     path('study_plan', views.studyplan, name='study_plan'),
     path('school', views.school, name='school'),
-    path('course', views.course, name='course')
-    
+    path('course', views.course, name='course'),
+    path('departamento', DepartamentoController.as_view(), name='departamento'),
 ]

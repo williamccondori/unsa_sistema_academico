@@ -6,14 +6,16 @@ class StudyPlanService(object):
 
     def obtener_x_departamento(self, id_departamento):
         plan_estudios_dto = []
-        # plan_estudios = StudyPlan.objects.filter(school.departament.id=id_departamento)
-        plan_estudios = []
-        for plan_estudio in plan_estudios:
-            plan_estudios_dto.append(StudyPlanDto(
-                id=plan_estudio.id,
-                year=plan_estudio.year,
-                name='Plan de estudios [' + str(plan_estudio.year) + ']'
-            ))
+        departamentos = Departament.objects.filter(id=id_departamento)
+        for departamento in departamentos:
+            for escuela in departamento.school_set.all():
+                for plan_estudio in escuela.studyplan_set.all():
+                    plan_estudios_dto.append(StudyPlanDto(
+                        id=plan_estudio.id,
+                        year=plan_estudio.year,
+                        nombre='Plan de estudios [' + str(plan_estudio.year) + ']'
+                    ))
+        return plan_estudios_dto
 
     def get(self):
         study_plans_dto = []

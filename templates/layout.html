@@ -91,8 +91,8 @@
                                 <span class="panel-title">Seleccionar plan de estudios</span>
                             </div>
                             <div class="panel-body">
-                                <select class="form-control" name="id_plan_estudio">
-                                    <option value="1">Plan de estudio [2018]</option>
+                                <select class="form-control" name="id_plan_estudio" ng-repeat="PlanEstudio in ListaPlanEstudio">
+                                    <option value="{( PlanEstudio.Id )}" ng-bind="PlanEstudio.Nombre"></option>
                                 </select>
                             </div>
                         </div>
@@ -119,13 +119,33 @@
             </ul>
             <div class="collapse navbar-collapse app-menu-lateral">
                 <ul class="nav navbar-nav side-nav">
-                    <li>
+                    <section style="padding: 5px" ng-controller="InformacionController" ng-init="Iniciar()">
                         <section id="app-menu-lateral-tarjeta-usuario">
-                            <img src="{% static 'control_horas_lectivas/images/user.png' %}" alt="imagen" class="img-circle">
-                            <h1>William Condori Quispe</h1>
-                            <h2>Docente</h2>
+                            <img src="{% static 'control_horas_lectivas/images/{( Informacion.Imagen )}' %}" alt="imagen" class="img-circle">
+                            <h1><span ng-bind="Informacion.Nombre"></span></h1>
+                            <h2><span ng-bind="Informacion.Cargo"></span></h2>
                         </section>
-                    </li>
+                        <div class="well well-sm">
+                            <form action="{% url 'departamento' %}" method="post">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <select class="form-control" name="id_plan_estudio" id="id_plan_estudio">
+                                        <option ng-repeat="PlanEstudio in ListaPlanEstudio" value="{( PlanEstudio.Id )}" ng-bind="PlanEstudio.Nombre"></option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary btn-block">Seleccionar plan</button>
+                                </div>
+                            </form>
+                            <div>
+                                <b>Datos de la sesión:</b>
+                                <span>Departamento:</span><br>
+                                <span class="label label-primary"><span ng-bind="Informacion.NombreDepartamento"></span></span><br>
+                                <span>Plan de estudios:</span><br>
+                                <span class="label label-success"><span ng-bind="Informacion.NombrePlanEstudio"></span></span><br>
+                            </div>
+                        </div>
+                    </section>
                     <li>
                         <a href="{% url 'dashboard' %}"><i class="fa fa-tachometer-alt"></i> Inicio</a>
                     </li>
@@ -194,6 +214,10 @@
     <script src="{% static 'control_horas_lectivas/js/angular-toastr.js' %}"></script>
     <script src="{% static 'control_horas_lectivas/js/app/app.js' %}"></script>
     <script src="{% static 'control_horas_lectivas/js/app/factories/base-factory.js' %}"></script>
+
+    <script src="{% static 'control_horas_lectivas/js/app/factories/study-plan-factory.js' %}"></script>
+    <script src="{% static 'control_horas_lectivas/js/app/factories/informacion-factory.js' %}"></script>
+    <script src="{% static 'control_horas_lectivas/js/app/controllers/informacion-controller.js' %}"></script>
     {% block scripts %}{% endblock %}
 </body>
 

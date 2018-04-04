@@ -1,6 +1,7 @@
 from django.urls import path, include
 from . import views
 from control_horas_lectivas.controllers.departamento_controller import DepartamentoController
+from control_horas_lectivas.controllers.login_controller import LoginController
 
 urlpatterns = [
     path('api/', include('control_horas_lectivas.urls_api')),
@@ -17,4 +18,5 @@ urlpatterns = [
     path('school', views.school, name='school'),
     path('course', views.course, name='course'),
     path('departamento', DepartamentoController.as_view(), name='departamento'),
+    path('login', LoginController.as_view(), name='login')
 ]

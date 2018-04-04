@@ -28,8 +28,13 @@
 
         $scope.ObtenerInformacion = function(){
             InformacionFactory.ObtenerInformacion().then(function (response) {
-                if (response.Estado)
+                if (response.Estado){
                     $scope.Informacion = response.Datos;
+                    ruta_imagen = document.getElementById('app-usuario-imagen').attributes['src'].value;
+                    ruta_imagen = ruta_imagen + $scope.Informacion.Imagen;
+                    document.getElementById('app-usuario-imagen').attributes['src'].value = ruta_imagen;
+                    document.getElementById('app-usuario-username').innerHTML = $scope.Informacion.Username.toUpperCase();
+                }
                 else
                     toastr.error(response.Mensaje, Mensaje.Error.Titulo);
             }).catch(function (error) {

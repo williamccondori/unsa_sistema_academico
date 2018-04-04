@@ -11,11 +11,10 @@ class CourseApiController(View):
     def get(self, request, *args, **kwargs):
         try:
             course_service = CourseService()
-            if 'id_plan_estudio' in request.GET:
-                id_plan_estudio = int(request.GET['id_plan_estudio'])
-                result = course_service.obtener_x_plan_estudio(id_plan_estudio)
-            else:
-                result = []
+            id_plan_estudio = request.session.get('id_plan_estudio', False)
+            if id_plan_estudio is False:
+                id_plan_estudio = 0
+            result = course_service.obtener_x_plan_estudio(id_plan_estudio)
             return JsonResponse(encode.to_json(
                 Response(datos=result)), safe=False)
         except Exception as e:
@@ -27,8 +26,13 @@ class CourseApiController(View):
             course_service = CourseService()
             course_dto = CourseDto()
 
+            id_plan_estudio = request.session.get('id_plan_estudio', False)
+            if id_plan_estudio is False:
+                id_plan_estudio = 0
+
             json_data = encode.to_json_object(request.body)
             course_dto.from_json(json_data)
+            course_dto.IdPlanEstudio = id_plan_estudio
             course_service.save(course_dto)
 
             return JsonResponse(encode.to_json(

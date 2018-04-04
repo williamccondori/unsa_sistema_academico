@@ -16,6 +16,8 @@ class LoginController(View):
         username = str(request.POST['username'])
         password = str(request.POST['password'])
 
+        usuario = []
+
         if username == 'william':
             if password == 'Computo.123':
                 print('Se esta iniciando sesion')

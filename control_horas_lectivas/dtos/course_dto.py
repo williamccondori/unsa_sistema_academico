@@ -15,28 +15,10 @@ class CourseDto(object):
 
     def from_json(self, json_data):
         self.Id = json_data["Id"]
-        self.Name = json_data["Name"]
-        self.Credit = json_data["Credit"]
-        self.IdStudyPlan = json_data["IdStudyPlan"]
-        self.IdTeacher = json_data["IdTeacher"]
+        self.Nombre = json_data["Nombre"]
+        self.Credito = json_data["Credito"]
+        self.IdPlanEstudio = 0
         self.Estado = json_data["Estado"]
-
-        hours_dto = []
-        for hour in json_data["HoursDto"]:
-            hour_dto = HourDto()
-            hour_dto.to_dto(
-                hour["Id"],
-                hour["Quantity"],
-                hour["IdHourType"],
-                hour["Estado"]
-            )
-            hours_dto.append(hour_dto)
-        self.HoursDto = hours_dto
 
     def from_json_delete(self, json_data):
         self.Id = json_data["Id"]
-        self.Name = json_data["Name"]
-        self.Credit = json_data["Credit"]
-        self.IdStudyPlan = json_data["IdStudyPlan"]
-        self.IdTeacher = json_data["IdTeacher"]
-        self.Estado = json_data["Estado"]

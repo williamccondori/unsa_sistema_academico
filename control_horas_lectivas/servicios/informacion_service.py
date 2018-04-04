@@ -7,6 +7,7 @@ class InformacionService(object):
         usuario_sistema = usuario_sistema[0]
         informacion_dto = InformacionDto(
             id=usuario_sistema.id,
+            username=usuario_sistema.user.username,
             nombre=usuario_sistema.user.first_name+' '+usuario_sistema.user.last_name,
             cargo=usuario_sistema.user_type.name,
             imagen=usuario_sistema.image,

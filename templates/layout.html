@@ -28,91 +28,14 @@
             </div>
             <ul class="nav navbar-right top-nav">
                 <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
-                        <ul class="dropdown-menu message-dropdown">
-                            <li class="message-preview">
-                                <a href="#">
-                                    <div class="media">
-                                        <span class="pull-left">
-                                            <img class="media-object" src="http://placehold.it/50x50" alt="">
-                                        </span>
-                                        <div class="media-body">
-                                            <h5 class="media-heading">
-                                                <strong>John Smith</strong>
-                                            </h5>
-                                            <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                            <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="message-preview">
-                                <a href="#">
-                                    <div class="media">
-                                        <span class="pull-left">
-                                            <img class="media-object" src="http://placehold.it/50x50" alt="">
-                                        </span>
-                                        <div class="media-body">
-                                            <h5 class="media-heading">
-                                                <strong>John Smith</strong>
-                                            </h5>
-                                            <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                            <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="message-preview">
-                                <a href="#">
-                                    <div class="media">
-                                        <span class="pull-left">
-                                            <img class="media-object" src="http://placehold.it/50x50" alt="">
-                                        </span>
-                                        <div class="media-body">
-                                            <h5 class="media-heading">
-                                                <strong>John Smith</strong>
-                                            </h5>
-                                            <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                            <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="message-footer">
-                                <a href="#">Read All New Messages</a>
-                            </li>
-                        </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
-                    <div class="dropdown-menu">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <span class="panel-title">Seleccionar plan de estudios</span>
-                            </div>
-                            <div class="panel-body">
-                                <select class="form-control" name="id_plan_estudio" ng-repeat="PlanEstudio in ListaPlanEstudio">
-                                    <option value="{( PlanEstudio.Id )}" ng-bind="PlanEstudio.Nombre"></option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-                <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <b><span id="app-usuario-username"></span></b><b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
+                                <a href="#"><i class="fa fa-fw fa-user"></i> Configuración</a>
                             </li>
                             <li class="divider"></li>
                             <li>
-                                <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                                <a href="#"><i class="fa fa-fw fa-power-off"></i> Cerrar sesión</a>
                             </li>
                         </ul>
                 </li>
@@ -121,7 +44,7 @@
                 <ul class="nav navbar-nav side-nav">
                     <section style="padding: 5px" ng-controller="InformacionController" ng-init="Iniciar()">
                         <section id="app-menu-lateral-tarjeta-usuario">
-                            <img src="{% static 'control_horas_lectivas/images/{( Informacion.Imagen )}' %}" alt="imagen" class="img-circle">
+                            <img id="app-usuario-imagen" src="{% static 'control_horas_lectivas/images/' %}" alt="imagen" class="img-circle">
                             <h1><span ng-bind="Informacion.Nombre"></span></h1>
                             <h2><span ng-bind="Informacion.Cargo"></span></h2>
                         </section>
@@ -140,9 +63,9 @@
                             <div>
                                 <b>Datos de la sesión:</b>
                                 <span>Departamento:</span><br>
-                                <span class="label label-primary"><span ng-bind="Informacion.NombreDepartamento"></span></span><br>
+                                <span class="label label-danger"><span ng-bind="Informacion.NombreDepartamento"></span></span><br>
                                 <span>Plan de estudios:</span><br>
-                                <span class="label label-success"><span ng-bind="Informacion.NombrePlanEstudio"></span></span><br>
+                                <span class="label label-danger"><span ng-bind="Informacion.NombrePlanEstudio"></span></span><br>
                             </div>
                         </div>
                     </section>

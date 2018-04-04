@@ -6,32 +6,81 @@ Gestión de cursos
 {% endblock %} 
 
 {% block contenido %}
-<div class="row">
-	<div class="col-xs-24">
-		<div class="panel">
-			<div class="panel-heading">
-				<span class="panel-title">Todos los registros <span class="badge">2</span></span>
-			</div>
-			<div class="table-responsive">
-				<table class="table table-condensed table-bordered">
-					<thead>
-						<tr>
-							<th>Nombre</th>
-							<th>Plan de estudios</th>
-							<th>
-								<button class="btn btn-success btn-xs"></button>
-							</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>Datos</td>
-							<td>Datos</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		</div>
-	</div>
-</div>
+<section ng-controller="CourseController" ng-init="Iniciar()">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <span class="panel-title">Todas los cursos
+                <span class="badge" ng-bind="ListaCourse.length"></span>
+            </span>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-condensed table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th class="text-center col-xs-3">
+                            <button class="btn btn-xs btn-success" ng-click="CrearCourse()">
+                                <span class="glyphicon glyphicon-plus-sign"></span>
+                            </button>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody ng-repeat="Course in ListaCourse">
+                    <tr>
+                        <td><span ng-bind="Course.Nombre"></span></td>
+                        <td class="text-center col-xs-3">
+                            <button class="btn btn-xs btn-warning" ng-click="ModificarCourse(Course)">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </button>
+                            <button class="btn btn-xs btn-danger" ng-click="EliminarCourse(Course)">
+                                <span class="glyphicon glyphicon-remove-sign"></span>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <div class="modal fade" id="app-modal-course">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <span class="panel-title">Ingrese la información requerida</span>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-xs-24 col-sm-18 col-md-18 col-lg-18">
+                                    <div class="form-group">
+                                        <label>Nombre:</label>
+                                        <input type="text" class="form-control" ng-model="Course.Nombre">
+                                    </div>
+								</div>
+								<div class="col-xs-24 col-sm-6 col-md-6 col-lg-6">
+                                    <div class="form-group">
+                                        <label>Créditos:</label>
+                                        <input type="number" class="form-control" ng-model="Course.Credito">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                            <div class="text-right">
+                                <button type="button" class="btn btn-default" ng-click="CancelarCourse()">Cancelar</button>
+                                <button type="button" class="btn btn-success" ng-click="GuardarCourse()">Guardar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'control_horas_lectivas/js/app/factories/course-factory.js' %}"></script>
+<script src="{% static 'control_horas_lectivas/js/app/controllers/course-controller.js' %}"></script>
 {% endblock %}

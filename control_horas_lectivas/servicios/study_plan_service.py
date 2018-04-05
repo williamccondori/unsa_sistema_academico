@@ -13,7 +13,11 @@ class StudyPlanService(object):
                     plan_estudios_dto.append(StudyPlanDto(
                         id=plan_estudio.id,
                         year=plan_estudio.year,
-                        nombre='Plan de estudios [' + str(plan_estudio.year) + ']'
+                        nombre=escuela.name + ' [' + str(plan_estudio.year) + ']',
+                        school_dto=SchoolDto(
+                            id=escuela.id,
+                            name=escuela.name
+                        )
                     ))
         return plan_estudios_dto
 

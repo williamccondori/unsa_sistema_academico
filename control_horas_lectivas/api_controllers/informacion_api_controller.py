@@ -16,7 +16,6 @@ class InformacionApiController(View):
             if id_departamento is False:
                 raise ValueError('No se ha registrado el código del departamento del usuario')
             id_plan_estudio = request.session.get('id_plan_estudio', False)
-            print(id_plan_estudio)
             resultado = informacion_service.obtener(username, id_departamento, id_plan_estudio)
             return JsonResponse(encode.to_json(
                 Response(datos=resultado)), safe=False)

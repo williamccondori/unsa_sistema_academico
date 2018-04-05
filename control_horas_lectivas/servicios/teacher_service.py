@@ -31,6 +31,32 @@ class TeacherService(object):
                 )
             ))
         return teachers_dto
+
+    def obtener_x_departamento(self, id_departamento):
+        teachers_dto = []
+        teachers = Teacher.objects.filter(departament_id=id_departamento)
+        for teacher in teachers:
+            teachers_dto.append(TeacherDto(
+                teacher.id
+                , teacher.name
+                , teacher.address_name
+                , teacher.degree
+                , teacher.speciality
+                , teacher.departament_id
+                , teacher.category.id
+                , teacher.regime_id
+                , DepartamentDto(
+                    teacher.departament.id
+                    , teacher.departament.name
+                ), CategoryDto(
+                    teacher.category.id
+                    , teacher.category.name
+                ), RegimeDto(
+                    teacher.regime.id
+                    , teacher.regime.name
+                )
+            ))
+        return teachers_dto
         
     def save(self, teacher_dto):
         if (teacher_dto.Estado == 1):
@@ -51,7 +77,6 @@ class TeacherService(object):
                 , address_name=teacher_dto.AddressName
                 , degree=teacher_dto.Degree
                 , speciality=teacher_dto.Speciality
-                , departament_id=teacher_dto.IdDepartament
                 , category_id=teacher_dto.IdCategory
                 , regime_id=teacher_dto.IdRegime
             )

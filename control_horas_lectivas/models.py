@@ -17,7 +17,6 @@ class UserSystem(models.Model):
     image = models.CharField(max_length=300)
     departament = models.ForeignKey(Departament, on_delete=models.CASCADE)
 
-
 class Category(models.Model):
     name = models.CharField(max_length=100)
 
@@ -35,6 +34,9 @@ class Teacher(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     regime = models.ForeignKey(Regime, on_delete=models.CASCADE)
 
+class TeacherUser(models.Model):
+    user_system = models.ForeignKey(UserSystem, on_delete=models.CASCADE)
+    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
 
 class School(models.Model):
     name = models.CharField(max_length=100)

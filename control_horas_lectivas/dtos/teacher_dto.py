@@ -24,12 +24,12 @@ class TeacherDto(object):
         self.Estado = estado
 
     def from_json(self, json_data):
+        self.IdDepartament = 0
         self.Id = json_data["Id"]
         self.Name = json_data["Name"]
         self.AddressName = json_data["AddressName"]
         self.Degree = json_data["Degree"]
         self.Speciality = json_data["Speciality"]
-        self.IdDepartament = json_data["IdDepartament"]
         self.IdCategory = json_data["IdCategory"]
         self.IdRegime = json_data["IdRegime"]
         self.Estado = json_data["Estado"]

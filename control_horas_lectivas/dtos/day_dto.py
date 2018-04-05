@@ -12,3 +12,6 @@ class DayDto(object):
         self.Name = json_data["Name"]
         self.Order = json_data["Order"]
         self.Estado = json_data["Estado"]
+    
+    def from_json_delete(self, json_data):
+        self.Id = json_data["Id"]

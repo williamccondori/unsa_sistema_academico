@@ -11,9 +11,10 @@ class SchoolApiController(View):
     def get(self, request, *args, **kwargs):
         try:
             school_service = SchoolService()
-
-            result = school_service.get()
-
+            id_departamento = request.session.get('id_departamento', False)
+            if id_departamento is False:
+                id_departamento = 0
+            result = school_service.obtener_x_departamento(id_departamento)
             return JsonResponse(encode.to_json(
                 Response(datos=result)), safe=False)
         except Exception as e:
@@ -24,9 +25,12 @@ class SchoolApiController(View):
         try:
             school_service = SchoolService()
             school_dto = SchoolDto()
-
+            id_departamento = request.session.get('id_departamento', False)
+            if id_departamento is False:
+                id_departamento = 0
             json_data = encode.to_json_object(request.body)
             school_dto.from_json(json_data)
+            school_dto.IdDepartament = id_departamento
             school_service.save(school_dto)
 
             return JsonResponse(encode.to_json(

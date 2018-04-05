@@ -8,11 +8,10 @@ class SchoolDto(object):
         self.Name = name
         self.IdDepartament = id_departament
         self.Estado = estado
-
         self.DepartamentDto = departament_dto
 
     def from_json(self, json_data):
+        self.IdDepartament = 0
         self.Id = json_data["Id"]
         self.Name = json_data["Name"]
-        self.IdDepartament = json_data["IdDepartament"]
         self.Estado = json_data["Estado"]

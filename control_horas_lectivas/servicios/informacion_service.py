@@ -17,5 +17,5 @@ class InformacionService(object):
         if id_plan_estudio is not False:
             plan_estudio = StudyPlan.objects.filter(id=id_plan_estudio)
             plan_estudio = plan_estudio[0]
-            informacion_dto.NombrePlanEstudio = plan_estudio.year
+            informacion_dto.NombrePlanEstudio = plan_estudio.school.name + ' [' + str(plan_estudio.year) + ']'
         return informacion_dto

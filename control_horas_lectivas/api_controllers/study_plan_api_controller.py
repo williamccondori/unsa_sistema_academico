@@ -10,11 +10,10 @@ class StudyPlanApiController(View):
 
     def get(self, request, *args, **kwargs):
         try:
-            request.session['id_departamento'] = 1
             study_plan_service = StudyPlanService()
             id_departamento = request.session.get('id_departamento', False)
             if id_departamento is False:
-                raise ValueError('No se ha registrado el código del departamento del usuario')
+                id_departamento = 0
             resultado = study_plan_service.obtener_x_departamento(id_departamento)
             return JsonResponse(encode.to_json(
                 Response(datos=resultado)), safe=False)

@@ -21,6 +21,21 @@ class SchoolService(object):
             ))
         return schools_dto
 
+    def obtener_x_departamento(self, id_departamento):
+        schools_dto = []
+        schools = School.objects.filter(departament_id=id_departamento)
+        for school in schools:
+            schools_dto.append(SchoolDto(
+                school.id
+                , school.name
+                , school.departament_id
+                , DepartamentDto(
+                    school.departament.id
+                    , school.departament.name
+                )
+            ))
+        return schools_dto
+
     def save(self, school_dto):
         if (school_dto.Estado == 1):
             school = School(
@@ -32,7 +47,6 @@ class SchoolService(object):
             school = School.objects.filter(pk=school_dto.Id)
             school.update(
                 name=school_dto.Name
-                , departament_id=school_dto.IdDepartament
             )
         else:
             return

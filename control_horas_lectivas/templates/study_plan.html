@@ -19,9 +19,9 @@ Gestión de plan de estudios
                     <tr>
                         <th>Escuela profesional</th>
                         <th>Año</th>
-                        <th class="text-center col-xs-4">
+                        <th class="text-center col-xs-3">
                             <button class="btn btn-xs btn-success" ng-click="CrearStudyPlan()">
-                                <span class="glyphicon glyphicon-plus-sign"></span> Agregar
+                                <span class="glyphicon glyphicon-plus-sign"></span>
                             </button>
                         </th>
                     </tr>
@@ -34,10 +34,7 @@ Gestión de plan de estudios
                         <td>
                             <span ng-bind="StudyPlan.Year"></span>
                         </td>
-                        <td class="text-center col-xs-4">
-                            <button class="btn btn-xs btn-primary" ng-click="MostrarCourse(StudyPlan)">
-                                <span class="glyphicon glyphicon-list"></span> Cursos
-                            </button>
+                        <td class="text-center col-xs-3">
                             <button class="btn btn-xs btn-warning" ng-click="ModificarStudyPlan(StudyPlan)">
                                 <span class="glyphicon glyphicon-pencil"></span>
                             </button>
@@ -50,64 +47,6 @@ Gestión de plan de estudios
             </table>
         </div>
     </div>
-
-
-
-    <div class="modal fade" id="app-modal-courses">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <span class="panel-title">Cursos
-                                <span class="badge" ng-bind="ListaCourse.length"></span>
-                        </div>
-                        <div class="table-responsive" style="height:400px; overflow-y: scroll;">
-                            <table class="table table-condensed table-hover table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>Nombre</th>
-                                        <th>Docente</th>
-                                        <th class="text-center col-xs-3">
-                                            <button class="btn btn-xs btn-success" ng-click="CrearCourse()">
-                                                <span class="glyphicon glyphicon-plus-sign"></span>
-                                            </button>
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody ng-repeat="Course in ListaCourse">
-                                    <tr>
-                                        <td class="col-xs-8">
-                                            <span ng-bind="Course.Name"></span>
-                                        </td>
-                                        <td>
-                                            <span ng-bind="Course.TeacherDto.Name + ' ' + Course.TeacherDto.AddressName"></span>
-                                        </td>
-                                        <td class="text-center col-xs-3">
-                                            <button class="btn btn-xs btn-warning" ng-click="ModificarCourse(Course)">
-                                                <span class="glyphicon glyphicon-pencil"></span>
-                                            </button>
-                                            <button class="btn btn-xs btn-danger" ng-click="EliminarCourse(Course)">
-                                                <span class="glyphicon glyphicon-remove-sign"></span>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="panel-footer">
-                            <div class="text-right">
-                                <button type="button" class="btn btn-default" ng-click="CerrarCourse()">Cerrar
-                                    <span class="glyphicon glyphicon-remove-sign"></span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
 
     <div class="modal fade" id="app-modal-study-plan">
         <div class="modal-dialog">
@@ -143,132 +82,6 @@ Gestión de plan de estudios
                                 <button type="button" class="btn btn-success" ng-click="GuardarStudyPlan()">Guardar
                                     <span class="glyphicon glyphicon-ok-sign"></span>
                                 </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="app-modal-course">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <span class="panel-title">Cursos</span>
-                        </div>
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-xs-24 col-sm-24 col-md-18 col-lg-18">
-                                    <div class="form-group">
-                                        <label>Nombre:</label>
-                                        <input type="text" class="form-control" ng-model="Course.Name">
-                                    </div>
-                                </div>
-                                <div class="col-xs-24 col-sm-24 col-md-6 col-lg-6">
-                                    <div class="form-group">
-                                        <label>Créditos:</label>
-                                        <input type="number" class="form-control" ng-model="Course.Credit">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xs-24 col-sm-24 col-md-24 col-lg-24">
-                                    <div class="form-group">
-                                        <label>Docente:</label>
-                                        <select class="form-control" ng-model="Course.IdTeacher" ng-options="elemento.Id as elemento.Name + ' ' + elemento.AddressName  for elemento in ListaTeacher">
-                                            <option value="">[Seleccione]</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="panel-heading">
-                            <span class="panel-title">Horas
-                                <span class="badge" ng-bind="Course.HoursDto.length"></span>
-                        </div>
-                        <div class="table-responsive">
-                            <table class="table table-condensed table-hover table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>Tipo de hora</th>
-                                        <th class="col-xs-4">Cantidad</th>
-                                        <th class="text-center col-xs-3">
-                                            <button class="btn btn-xs btn-success" ng-click="CrearHour()">
-                                                <span class="glyphicon glyphicon-plus-sign"></span>
-                                            </button>
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody ng-repeat="Hour in Course.HoursDto">
-                                    <tr>
-                                        <td>
-                                            <span ng-bind="Hour.HourTypeDto.Name"></span>
-                                        </td>
-                                        <td>
-                                            <span ng-bind="Hour.Quantity"></span>
-                                        </td>
-                                        <td class="text-center col-xs-3">
-                                            <button class="btn btn-xs btn-danger" ng-click="EliminarCourse(Course)">
-                                                <span class="glyphicon glyphicon-remove-sign"></span>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="panel-footer">
-                            <div class="text-right">
-                                <button type="button" class="btn btn-default" ng-click="CancelarCourse()">Cancelar
-                                    <span class="glyphicon glyphicon-remove-sign"></span>
-                                </button>
-                                <button type="button" class="btn btn-success" ng-click="GuardarCourse()">Guardar
-                                    <span class="glyphicon glyphicon-ok-sign"></span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="app-modal-hour">
-        <div class="modal-dialog model-sm">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <span class="panel-title">Hora</span>
-                        </div>
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-xs-24 col-sm-24 col-md-24 col-lg-24">
-                                    <div class="form-group">
-                                        <label>Tipo de hora:</label>
-                                        <select class="form-control"  ng-model="Hour.HourTypeDto" ng-options="elemento.Name for elemento in ListaHourType">
-                                            <option value="">[Seleccione]</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-xs-24 col-sm-24 col-md-24 col-lg-24">
-                                    <div class="form-group">
-                                        <label>Cantidad:</label>
-                                        <input type="text" class="form-control" ng-model="Hour.Quantity">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="panel-footer">
-                            <div class="text-right">
-                                    <button type="button" class="btn btn-default" ng-click="CancelarHour()">Cancelar
-                                            <span class="glyphicon glyphicon-remove-sign"></span>
-                                        </button>
-                                        <button type="button" class="btn btn-success" ng-click="GuardarHour()">Guardar
-                                            <span class="glyphicon glyphicon-ok-sign"></span>
-                                        </button>
                             </div>
                         </div>
                     </div>
